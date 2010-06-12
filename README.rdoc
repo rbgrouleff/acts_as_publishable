@@ -1,0 +1,41 @@
+= acts_as_publishable
+
+Rails gem for making ActiveRecord models publishable.
+
+== Installation
+
+	gem install acts_as_publishable
+	
+== Usage
+
+Make a model publishable:
+
+	class MyModel < ActiveRecord::Base
+		acts_as_publishable
+		
+		...
+	end
+
+Create a migration that adds the needed columns to the my_models table:
+
+	script/generate migration AddPublishableColumnsToMyModel publish_now:boolean published_from:datetime published_to:datetime
+
+Now you can ask if an instance of MyModel is published:
+
+	my_model = MyModel.first
+	my_model.published?
+	=> true
+
+The published? method returns true if my_model either has publish_now set to true or published_from is set in the past and published_to is set in the future.
+
+And you can also find instances of MyModel that are published:
+
+	MyModel.find_published
+
+This finds all instances where published? returns true.
+
+The find_published finder method accepts any of the normal options as the default find method accepts.
+
+== License
+
+acts_as_publishable is distributed under the Simplified BSD License, copyright (c) 2010 Rasmus Bang Grouleff
