@@ -36,6 +36,14 @@ This finds all instances where published? returns true.
 
 The find_published finder method accepts any of the normal options as the default find method accepts.
 
+== TODO
+
+* Make find_published a scope instead
+* Make use of default_published_now
+* Option for configuring whether publish_now should be OR'd or AND'd with the published_from and published_to columns
+* Add validations on published_from and published_to
+* Add publish! and unpublish! instance methods
+
 == License
 
 acts_as_publishable is distributed under the Simplified BSD License, copyright (c) 2010 Rasmus Bang Grouleff
