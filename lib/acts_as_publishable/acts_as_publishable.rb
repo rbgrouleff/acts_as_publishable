@@ -7,9 +7,7 @@ module ActsAsPublishable
     def acts_as_publishable(options = {})
       metaclass = (class << self; self; end)
       
-      return if metaclass.included_modules.include?(ActsAsPublishable::SingletonMethods)
-      
-      send :extend, ActsAsPublishable::SingletonMethods
+      return if metaclass.included_modules.include?(ActsAsPublishable::InstanceMethods)
       
       cattr_accessor :publish_now_column, :published_from_column, :published_to_column, :default_published_now
       
@@ -17,6 +15,7 @@ module ActsAsPublishable
       self.published_from_column = options[:published_from_column] || 'published_from'
       self.published_to_column = options[:published_to_column] || 'published_to'
       self.default_published_now = options[:default_published_now]
+      named_scope :published, :conditions => ["#{publish_now_column} = :published OR (#{published_from_column} <= :published_from AND #{published_to_column} >= :published_to)", {:published => true, :published_from => Time.now, :published_to => Time.now}]
       
       send :include, ActsAsPublishable::InstanceMethods
     end
