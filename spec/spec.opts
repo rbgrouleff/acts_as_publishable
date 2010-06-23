@@ -1,0 +1,5 @@
+--require spec/rspec_immediate_feedback_formatter.rb
+--format Spec::Runner::Formatter::ImmediateFeedbackFormatter
+--colour
+--loadby mtime
+--backtrace
