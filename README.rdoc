@@ -40,6 +40,7 @@ The find_published finder method accepts any of the normal options as the defaul
 
 * Option for configuring whether publish_now should be OR'd or AND'd with the published_from and published_to columns
 * Add publish! and unpublish! instance methods
+* Update README to reflect  functionality (config options, validation and the scope)
 
 == License
 
