@@ -2,15 +2,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_publishable}
-  s.version = "0.1.0"
+  s.version = "0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Rasmus Bang Grouleff"]
-  s.date = %q{2010-06-12}
+  s.date = %q{2010-06-23}
   s.description = %q{Rails gem that adds functionality to make Active Record models publishable}
   s.email = %q{rasmus@anybite.com}
   s.extra_rdoc_files = ["README.rdoc", "lib/acts_as_publishable.rb", "lib/acts_as_publishable/acts_as_publishable.rb"]
-  s.files = ["README.rdoc", "Rakefile", "lib/acts_as_publishable.rb", "lib/acts_as_publishable/acts_as_publishable.rb", "Manifest", "acts_as_publishable.gemspec"]
+  s.files = ["README.rdoc", "Rakefile", "acts_as_publishable.gemspec", "lib/acts_as_publishable.rb", "lib/acts_as_publishable/acts_as_publishable.rb", "spec/acts_as_publishable_spec.rb", "spec/rspec_immediate_feedback_formatter.rb", "spec/spec.opts", "spec/spec_helper.rb", "Manifest"]
   s.homepage = %q{http://github.com/rbgrouleff/acts_as_publishable}
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Acts_as_publishable", "--main", "README.rdoc"]
   s.require_paths = ["lib"]
