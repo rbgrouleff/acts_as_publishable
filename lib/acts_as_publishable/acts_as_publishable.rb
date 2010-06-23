@@ -19,16 +19,18 @@ module ActsAsPublishable
       named_scope :published, :conditions => ["#{publish_now_column} = :published OR (#{published_from_column} <= :published_from AND #{published_to_column} >= :published_to)", {:published => true, :published_from => Time.now, :published_to => Time.now}]
       
       before_save { |publishable| publishable[publish_now_column.to_sym] = default_published_now if publishable[publish_now_column.to_sym].nil?; true }
+      
+      validate_chronology
+      
       send :include, ActsAsPublishable::InstanceMethods
     end
     
-    
-  end
-  
-  module SingletonMethods
-    def find_published(options = {})
-      scope = scoped(:conditions => ["#{publish_now_column} = :published OR (#{published_from_column} <= :published_from AND #{published_to_column} >= :published_to)", {:published => true, :published_from => Time.now, :published_to => Time.now}])
-      scope.find(:all, options)
+    def validate_chronology
+      validates_each published_to_column do |publishable, attribute, value|
+        unless value.blank? || publishable[published_from_column.to_sym].blank?
+          publishable.errors.add(attribute, :earlier_than_published_from, :default => "cannot be set earlier than #{published_from_column.to_s.humanize}") unless publishable[published_from_column.to_sym] < value
+        end
+      end
     end
   end
   
