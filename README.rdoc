@@ -38,7 +38,6 @@ The find_published finder method accepts any of the normal options as the defaul
 
 == TODO
 
-* Make find_published a scope instead
 * Make use of default_published_now
 * Option for configuring whether publish_now should be OR'd or AND'd with the published_from and published_to columns
 * Add validations on published_from and published_to
