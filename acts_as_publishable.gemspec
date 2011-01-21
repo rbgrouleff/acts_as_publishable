@@ -1,30 +1,25 @@
 # -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "acts_as_publishable/version"
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_publishable}
-  s.version = "0.2"
-
-  s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
+  s.version = ActsAsPublishable::VERSION
+  s.platform    = Gem::Platform::RUBY
   s.authors = ["Rasmus Bang Grouleff"]
-  s.date = %q{2010-06-23}
-  s.description = %q{Rails gem that adds functionality to make Active Record models publishable}
   s.email = %q{rasmus@anybite.com}
-  s.extra_rdoc_files = ["README.rdoc", "lib/acts_as_publishable.rb", "lib/acts_as_publishable/acts_as_publishable.rb"]
-  s.files = ["README.rdoc", "Rakefile", "acts_as_publishable.gemspec", "lib/acts_as_publishable.rb", "lib/acts_as_publishable/acts_as_publishable.rb", "spec/acts_as_publishable_spec.rb", "spec/rspec_immediate_feedback_formatter.rb", "spec/spec.opts", "spec/spec_helper.rb", "Manifest"]
   s.homepage = %q{http://github.com/rbgrouleff/acts_as_publishable}
-  s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Acts_as_publishable", "--main", "README.rdoc"]
-  s.require_paths = ["lib"]
-  s.rubyforge_project = %q{acts_as_publishable}
-  s.rubygems_version = %q{1.3.7}
   s.summary = %q{Rails gem that adds functionality to make Active Record models publishable}
+  s.description = %q{Rails gem that adds functionality to make Active Record models publishable}
 
-  if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
-    s.specification_version = 3
+  s.rubyforge_project = %q{acts_as_publishable}
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-    else
-    end
-  else
-  end
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.require_paths = ["lib"]
+
+  s.add_development_dependency 'rspec', '= 1.3.1'
+  s.add_development_dependency 'sqlite3-ruby'
+  s.add_dependency 'rails', '~> 2.3'
 end
