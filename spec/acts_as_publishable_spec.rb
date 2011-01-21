@@ -75,7 +75,7 @@ describe "Publishable with default columns" do
     a_day_ago = Time.parse 'Fri Jun 18 17:03:03 +0200 2010'
     @post.published_from = a_day_ago
     @post.published_to = tomorrow
-    @post.save_without_validation
+    @post.save(:validate => false)
     Post.find(@post.id).published_from.should eql(a_day_ago)
     Post.find(@post.id).published_to.should eql(tomorrow)
    end
