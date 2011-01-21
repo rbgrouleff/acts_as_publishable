@@ -91,6 +91,12 @@ describe "Publishable with default columns" do
     @post.published_from = Time.now
     @post.valid?.should_not be_true
   end
+
+  it "is published if published_from is set in the past" do
+    @post.published_from = 1.day.ago
+    @post.published?.should be_true
+    @post.published_to.should != nil
+  end
 end
 
 describe "Publishable with default_published_now set to true" do

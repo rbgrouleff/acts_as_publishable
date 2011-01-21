@@ -39,7 +39,10 @@ module ActsAsPublishable
       now = Time.now
       @from ||= self[self.class.published_from_column.to_sym]
       @to ||= self[self.class.published_to_column.to_sym]
-      self[self.class.publish_now_column.to_sym] || ((@from && @from <= now) && (@to && @to >= now))
+      is_published_now = self[self.class.publish_now_column.to_sym]
+      is_published_from_in_the_past = @from && @from <= now
+      is_published_to_in_the_future = @to && @to >= now
+      is_published_now || is_published_from_in_the_past && !@to || !@from && is_published_to_in_the_future || is_published_from_in_the_past && is_published_to_in_the_future
     end
   end
 end
