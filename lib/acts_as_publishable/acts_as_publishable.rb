@@ -34,7 +34,7 @@ module ActsAsPublishable
   
   module InstanceMethods
     def published?
-      now = Time.now
+      now = Time.now.utc
       @from ||= self[self.class.published_from_column.to_sym]
       @to ||= self[self.class.published_to_column.to_sym]
       is_published_now = self[self.class.publish_now_column.to_sym]
