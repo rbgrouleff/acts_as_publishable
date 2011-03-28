@@ -14,7 +14,7 @@ module ActsAsPublishable
       self.published_to_column = options[:published_to_column] || 'published_to'
       self.default_published_now = (options[:default_published_now] == true)
       
-      scope :published, where(["#{publish_now_column} = :published OR (#{published_from_column} <= :published_from AND #{published_to_column} >= :published_to)", {:published => true, :published_from => Time.now, :published_to => Time.now}])
+      scope :published, where(["#{publish_now_column} = :published OR (#{published_from_column} <= :published_from AND #{published_to_column} >= :published_to)", {:published => true, :published_from => Time.now.utc, :published_to => Time.now.utc}])
       
       before_save { |publishable| publishable[publish_now_column.to_sym] = default_published_now if publishable[publish_now_column.to_sym].nil?; true }
       
